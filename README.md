@@ -27,9 +27,9 @@ Principais estudos na área de visão computacional
 4. [IMAGENET](http://www.image-net.org/)
 5. [IMDB-WIKI](https://data.vision.ee.ethz.ch/cvl/rrothe/imdb-wiki/)
 6. [Kinetics-700](https://deepmind.com/research/open-source/kinetics)
-7. [MS Coco] (http://cocodataset.org/#home)
-8. [MPII Human Pose] (http://human-pose.mpi-inf.mpg.de/)
-9. [Open Images Dataset] (https://opensource.google/projects/open-images-dataset)
+7. [MS Coco](http://cocodataset.org/#home)
+8. [MPII Human Pose](http://human-pose.mpi-inf.mpg.de/)
+9. [Open Images Dataset](https://opensource.google/projects/open-images-dataset)
 10.[20BN-SS-V2](https://20bn.com/datasets/something-something)
 
 
