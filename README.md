@@ -30,6 +30,6 @@ Principais estudos na área de visão computacional
 7. [MS Coco](http://cocodataset.org/#home)
 8. [MPII Human Pose](http://human-pose.mpi-inf.mpg.de/)
 9. [Open Images Dataset](https://opensource.google/projects/open-images-dataset)
-10.[20BN-SS-V2](https://20bn.com/datasets/something-something)
+10. [20BN-SS-V2](https://20bn.com/datasets/something-something)
 
 
