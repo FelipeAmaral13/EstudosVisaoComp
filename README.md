@@ -19,5 +19,8 @@ Principais estudos na área de visão computacional
 14. Image Completion
 15. Multi-view Scene Understanding
 
+# Data Image 
+
+1. [CIFAR-10](https://www.cs.toronto.edu/~kriz/cifar.html)
 
 
