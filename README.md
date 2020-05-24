@@ -1,6 +1,3 @@
-# EstudosVisaoComp
-Principais estudos na área de visão computacional
-
 # Project Ideas
 
 1.  Colour Detection
@@ -31,7 +28,3 @@ Principais estudos na área de visão computacional
 8. [MPII Human Pose](http://human-pose.mpi-inf.mpg.de/)
 9. [Open Images Dataset](https://opensource.google/projects/open-images-dataset)
 10. [20BN-SS-V2](https://20bn.com/datasets/something-something)
-
-#  Open image data
-
-1. [CIFAR-10](https://www.cs.toronto.edu/~kriz/cifar.html)
