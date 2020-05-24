@@ -20,4 +20,6 @@ Principais estudos na área de visão computacional
 15. Multi-view Scene Understanding
 
 
+#  Open image data
 
+1. [CIFAR-10](https://www.cs.toronto.edu/~kriz/cifar.html)
