@@ -1,7 +1,7 @@
 import numpy as np
 from time import sleep
 import argparse
-#from constantes import *
+
 try:
     import cv2
 except ImportError:
