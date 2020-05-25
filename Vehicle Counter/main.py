@@ -19,12 +19,14 @@ detec = []
 
 def pega_centro(x, y, largura, altura):
     """
+    Funcao para encontrar o centro do objeto.
     :param x: x do objeto
     :param y: y do objeto
     :param largura: largura do objeto
     :param altura: altura do objeto
     :return: tupla que contém as coordenadas do centro de um objeto
     """
+
     x1 = largura // 2
     y1 = altura // 2
     cx = x + x1
@@ -46,7 +48,7 @@ def show_info(frame1, dilatada):
     text = f'Carros: {carros}'
     cv2.putText(frame1, text, (450, 70), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 0, 255), 5)
     cv2.imshow("Video Original", frame1)
-    cv2.imshow("Detectar", dilatada)
+    #cv2.imshow("Detectar", dilatada)
 
 
 carros = caminhoes = 0
@@ -59,6 +61,7 @@ if __name__ == "__main__":
     )
     parser.add_argument('--video', help='Caminho do video exemplo. Se vazio, ligar a webcam')
     parser.add_argument('--largura_min', help='Largura minima. Default 80')
+    parser.add_argument('--tempoFrame', help='printar os frames')
 
     args = parser.parse_args()
 
@@ -69,25 +72,36 @@ if __name__ == "__main__":
 
     while True:
         ret, frame1 = cap.read()  # Pega cada frame do vídeo
+
         tempo = float(1 / delay)
         sleep(tempo)  # Dá um delay entre cada processamento
+        if args.tempoFrame:
+            print(sleep(tempo))
+        else:
+            sleep(tempo)
+        
+        # Processamento
         grey = cv2.cvtColor(frame1, cv2.COLOR_BGR2GRAY)  # Pega o frame e transforma para preto e branco
+        
         blur = cv2.GaussianBlur(grey, (3, 3), 5)  # Faz um blur para tentar remover as imperfeições da imagem
+        
         img_sub = subtracao.apply(blur)  # Faz a subtração da imagem aplicada no blur
+        
         dilat = cv2.dilate(img_sub, np.ones((5, 5)))  # "Engrossa" o que sobrou da subtração
-        kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (
-            5, 5))  # Cria uma matriz 5x5, em que o formato da matriz entre 0 e 1 forma uma elipse dentro
+        kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (5, 5)) 
         dilatada = cv2.morphologyEx(dilat, cv2.MORPH_CLOSE, kernel)  # Tenta preencher todos os "buracos" da imagem
-        dilatada = cv2.morphologyEx(dilatada, cv2.MORPH_CLOSE, kernel)
 
+        #Encontrar os contornos
         contorno, img = cv2.findContours(dilatada, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
-        cv2.line(frame1, (25, pos_linha), (1200, pos_linha), (255, 127, 0), 3) #Linha de corte
+
+        #Linha de corte 
+        cv2.line(frame1, (25, pos_linha), (1200, pos_linha), (255, 127, 0), 3) 
         for (i, c) in enumerate(contorno):
             (x, y, w, h) = cv2.boundingRect(c)
             if args.largura_min:
                 largura_min = args.largura_min 
             else:
-                validar_contorno = (w >= 80) and (h >= altura_min)
+                validar_contorno = (w >= largura_min) and (h >= altura_min)
                 if not validar_contorno:
                     continue
 
