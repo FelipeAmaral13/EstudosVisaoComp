@@ -1,6 +1,6 @@
 # Project Ideas
 
-1.  Colour Detection
+1.  Colour Detection and Tracking
 2.  Edge Detection
 3.  Face Detection
 4.  Hand gesture Recognition
