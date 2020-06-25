@@ -11,7 +11,7 @@
 9.  Object Tracking
 10. Vehicle Counting
 11. Barcode and QR Code Scanner
-12. Photo Skething
+12. Image Stitching
 13. Image Reverse Search Engine
 14. Image Completion
 15. Multi-view Scene Understanding
