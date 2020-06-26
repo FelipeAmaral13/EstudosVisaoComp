@@ -55,6 +55,6 @@ h,w = img1_gray.shape
 pts = np.float32([ [0,0],[0,h-1],[w-1,h-1],[w-1,0]]).reshape(-1,1,2)
 dst = cv2.perspectiveTransform(pts,H)
 
-img_final = cv2.polylines(img2,[np.int32(dst)],True,255,3, cv2.LINE_AA)
+img_final = cv2.polylines(img2,[np.int32(dst)],True,255,1, cv2.LINE_AA)
 plt.imshow(img_final)
 plt.show()
