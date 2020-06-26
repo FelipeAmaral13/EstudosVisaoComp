@@ -13,7 +13,7 @@ Seguintes passos foram desenvolvidos para esse projeto:
 
 * Calcular a distância entre cada desdritores da primeira imagem em relação a segunda.
 
-![1](https://user-images.githubusercontent.com/5797933/85856524-8c947500-b78e-11ea-9cbf-02ece945a5b7.png)
+![2](https://user-images.githubusercontent.com/5797933/85856754-ee54df00-b78e-11ea-8bb5-8982de18f4fe.png)
 
 * Selecionar os matchs. 
 * Rodar oRANSAC para estimar a homografia.
