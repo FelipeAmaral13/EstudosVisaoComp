@@ -1,13 +1,12 @@
-#https://medium.com/analytics-vidhya/image-stitching-with-opencv-and-python-1ebd9e0a6d78
-
 #Bibliotecas
 import cv2
 import numpy as np
 import matplotlib.pyplot as plt
+import os
 
 #Imagens
-img1 = cv2.imread('foto1A.jpg')
-img2 = cv2.imread('foto1B.jpg')
+img1 = cv2.imread(os.path.join(os.getcwd(),'foto1A.jpg'))
+img2 = cv2.imread(os.path.join(os.getcwd(),'foto1B.jpg'))
 
 img1_gray = cv2.cvtColor(img1, cv2.COLOR_RGB2GRAY)
 img2_gray = cv2.cvtColor(img2, cv2.COLOR_RGB2GRAY)
@@ -53,8 +52,9 @@ dst_pts = np.float32([kp2[m.trainIdx].pt for m in raw_matches]).reshape(-1, 1, 2
 H, mask  = cv2.findHomography(src_pts, dst_pts, cv2.RANSAC, 5.0)
 
 h,w = img1_gray.shape
-pts = np.float32([ [0,0],[0,h-1],[w-1,h-1],[w-1,0] ]).reshape(-1,1,2)
+pts = np.float32([ [0,0],[0,h-1],[w-1,h-1],[w-1,0]]).reshape(-1,1,2)
 dst = cv2.perspectiveTransform(pts,H)
 
-img2 = cv2.polylines(img2,[np.int32(dst)],True,255,3, cv2.LINE_AA)
-plt.imshow("original_image_overlapping.jpg", img2)
+img_final = cv2.polylines(img2,[np.int32(dst)],True,255,3, cv2.LINE_AA)
+plt.imshow(img_final)
+plt.show()
