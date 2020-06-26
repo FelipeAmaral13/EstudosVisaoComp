@@ -5,8 +5,8 @@ import matplotlib.pyplot as plt
 import os
 
 #Imagens
-img1 = cv2.imread(os.path.join(os.getcwd(),'foto1A.jpg'))
-img2 = cv2.imread(os.path.join(os.getcwd(),'foto1B.jpg'))
+img1 = cv2.imread(os.path.join(os.getcwd(),'foto1.jpeg'))
+img2 = cv2.imread(os.path.join(os.getcwd(),'foto2.jpeg'))
 
 img1_gray = cv2.cvtColor(img1, cv2.COLOR_RGB2GRAY)
 img2_gray = cv2.cvtColor(img2, cv2.COLOR_RGB2GRAY)
