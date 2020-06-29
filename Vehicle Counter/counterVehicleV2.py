@@ -6,6 +6,7 @@
 import numpy as np
 import cv2
 from time import sleep
+import os
 
 
 #-----------------------------------------#
@@ -16,17 +17,16 @@ from time import sleep
 
 veiculos = 0
 detects = []
+total = 0
 
 #Linhas Vertical
-posL = 530 #posicao da linha da Vert
+posL = 580 #posicao da linha da Vert
 offset = 30 #pixel pra cima de pra baixo pra contagem
 
-#Posicao da linha
+#Posicao da linha da faixa 
 xy1 = (80, posL)
-xy2 = (550, posL)
+xy2 = (1090, posL)
 
-xy3 = (650, posL)
-xy4 = (1090, posL)
 
 #-----------------------------------------#
 #                                         #
@@ -45,7 +45,7 @@ def centro(x,y,w,h):
 #Funcao mostrar contador
 def show_veiculo(frame, closing):
     text = f'Veiculos: {veiculos}'
-    cv2.putText(frame, text, (50, 70), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 2)
+    cv2.putText(frame, text + str(total), (50, 70), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 2)
     cv2.imshow("frame", frame)
     #cv2.imshow('Frame', frame)
     #cv2.imshow('Gray', gray)
@@ -54,7 +54,7 @@ def show_veiculo(frame, closing):
 
 
 #cap = cv2.VideoCapture(0)
-cap = cv2.VideoCapture('video.mp4')
+cap = cv2.VideoCapture(os.path.join(os.getcwd(),'video2.mp4'))
 
 fgbg = cv2.createBackgroundSubtractorMOG2()
 
@@ -78,10 +78,10 @@ while True:
     #Extracao do contorno
     contours, hierarcky = cv2.findContours(closing, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
 
-    cv2.line(frame, (25, 550), (1200, 550), (0, 0, 255), 3)
+    cv2.line(frame, (25, 600), (1200, 600), (0, 0, 255), 3)
 
     cv2.line(frame, (xy1[0], posL-offset), (xy2[0], posL-offset), (255,255,0), 2)
-    cv2.line(frame, (xy3[0], 500), (xy4[0], 500), (255,255,0), 2)
+    #cv2.line(frame, (xy3[0], posL-offset), (xy4[0], posL-offset), (255,255,0), 2)
     
 
 
@@ -98,25 +98,33 @@ while True:
 
             if len(detects) <= id:
                 detects.append([])
-            if center[1]> posL-offset and center[1] < posL+offset:
+            if center[1] > posL-offset and center[1] < posL+offset:
                 detects[id].append(center)
             else:
                 detects[id].clear()
 
+            id += 1
 
-        else:
-            continue
 
-        id +=1 
+    if id == 0:
+        detects.clear()
+
+    id = 0 
 
 
     if len(contours) == 0:
         detects.clear()
 
-    if len(detects) > 0:
+    else: 
         for detect in detects:
             for (c, l) in enumerate(detect):
-                print(id)
+                if detect[c-1][1] < posL and l[1] > posL:
+                    detect.clear()
+                    total+=1
+                    cv2.line(frame, xy1, xy2, (0,255,0), 5)
+                    continue
+                
+                
 
     print(detects)
 
