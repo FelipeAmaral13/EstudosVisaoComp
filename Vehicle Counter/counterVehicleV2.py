@@ -21,7 +21,7 @@ total = 0
 
 #Linhas Vertical
 posL = 580 #posicao da linha da Vert
-offset = 30 #pixel pra cima de pra baixo pra contagem
+offset = 40 #pixel pra cima de pra baixo pra contagem
 
 #Posicao da linha da faixa 
 xy1 = (80, posL)
@@ -47,16 +47,17 @@ def show_veiculo(frame, closing):
     text = f'Veiculos: {veiculos}'
     cv2.putText(frame, text + str(total), (50, 70), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 2)
     cv2.imshow("frame", frame)
-    #cv2.imshow('Frame', frame)
-    #cv2.imshow('Gray', gray)
-    #cv2.imshow('Mask', fgmask)
+    #cv2.imshow('opening', opening)
+    #cv2.imshow('closing', closing)
+    #cv2.imshow('fgmask', fgmask)
+    #cv2.imshow('closing', closing)
 
 
 
 #cap = cv2.VideoCapture(0)
-cap = cv2.VideoCapture(os.path.join(os.getcwd(),'video2.mp4'))
+cap = cv2.VideoCapture(os.path.join(os.getcwd(),'video.mp4'))
 
-fgbg = cv2.createBackgroundSubtractorMOG2()
+fgbg = cv2.createBackgroundSubtractorMOG2(varThreshold=200 ,detectShadows=True)
 
 
 while True:
@@ -71,9 +72,11 @@ while True:
 
     #Morfologia
     kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (5, 5))
-    opening = cv2.morphologyEx(th, cv2.MORPH_OPEN, kernel, iterations=2)
-    dilation = cv2.dilate(opening, kernel, iterations=8)
-    closing = cv2.morphologyEx(dilation, cv2.MORPH_CLOSE, kernel, iterations=8)    
+    opening = cv2.morphologyEx(th, cv2.MORPH_OPEN, kernel, iterations=3)
+    dilation = cv2.dilate(opening, kernel, iterations=3)
+    closing = cv2.morphologyEx(dilation, cv2.MORPH_CLOSE, kernel, iterations=4)
+    
+    
 
     #Extracao do contorno
     contours, hierarcky = cv2.findContours(closing, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
@@ -81,16 +84,13 @@ while True:
     cv2.line(frame, (25, 600), (1200, 600), (0, 0, 255), 3)
 
     cv2.line(frame, (xy1[0], posL-offset), (xy2[0], posL-offset), (255,255,0), 2)
-    #cv2.line(frame, (xy3[0], posL-offset), (xy4[0], posL-offset), (255,255,0), 2)
-    
-
 
     id = 0
     for cnt in contours:
         (x,y,w,h) = cv2.boundingRect(cnt) #Quatro variavies para fazer o rect
         area = cv2.contourArea(cnt)
 
-        if (w >= 80) and (h >= 80) :
+        if (w >= 50) and (h >= 50) :
             center = centro(x,y,w,h)
             cv2.circle(frame, center, 4, (0, 0, 255), -1)
             cv2.rectangle(frame, (x,y), (x+w, y+h), (0,255,0), 2)
@@ -127,8 +127,6 @@ while True:
                 
 
     print(detects)
-
-
 
 
     show_veiculo(frame, closing)
