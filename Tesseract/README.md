@@ -23,13 +23,13 @@ https://tesseract-ocr.github.io/tessdoc/Home.html
 
 image_to_data(image, lang=None, config='', nice=0, output_type=Output.STRING, timeout=0, pandas_config=None)
 
-**image Object or String** - Imagem. É preciso converter para RGB.
-**lang String** - Lingua do Tesseract deverá reconhecer. Defaults é eng. É possível multiplas linguas: lang='eng+fra'
-**config String** - Qualquer custom adicional configuração: config='--psm 6'
-**nice Integer** - modifica a prioridade do processador para a execução do Tesseract. Não suportado no Windows. Nice ajusta a gentileza de processos do tipo unix.
-**output_type** Atributo de classe - especifica o tipo de saída, o padrão é string. Para obter a lista completa de todos os tipos suportados, verifique a definição de classe pytesseract.Output.
-**timeout Integer or Float** - duração em segundos para o processamento do OCR, após o qual o pytesseract será encerrado e aumentará o RuntimeError.
-**pandas_config Dict** - somente para o tipo Output.DATAFRAME. Dicionário com argumentos personalizados para pandas.read_csv. Permite personalizar a saída de image_to_data.
+* **image Object or String** - Imagem. É preciso converter para RGB.
+* **lang String** - Lingua do Tesseract deverá reconhecer. Defaults é eng. É possível multiplas linguas: lang='eng+fra'
+* **config String** - Qualquer custom adicional configuração: config='--psm 6'
+* **nice Integer** - modifica a prioridade do processador para a execução do Tesseract. Não suportado no Windows. Nice ajusta a gentileza de processos do tipo unix.
+* **output_type** Atributo de classe - especifica o tipo de saída, o padrão é string. Para obter a lista completa de todos os tipos suportados, verifique a definição de classe pytesseract.Output.
+* **timeout Integer or Float** - duração em segundos para o processamento do OCR, após o qual o pytesseract será encerrado e aumentará o RuntimeError.
+* **pandas_config Dict** - somente para o tipo Output.DATAFRAME. Dicionário com argumentos personalizados para pandas.read_csv. Permite personalizar a saída de image_to_data.
 
 
 ### Exemplo da detecção da letras por boxes
