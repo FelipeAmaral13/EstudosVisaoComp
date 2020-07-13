@@ -34,8 +34,10 @@ image_to_data(image, lang=None, config='', nice=0, output_type=Output.STRING, ti
 
 ### Exemplo da detecção da letras por boxes
 
-
-
+![1](https://user-images.githubusercontent.com/5797933/87323903-c2af5400-c505-11ea-86dd-ce56b71c075c.png)
 
 
 ### Exemploda detecção das palavras por boxes
+
+![2](https://user-images.githubusercontent.com/5797933/87323907-c4791780-c505-11ea-98f0-91c2d9812c6c.png)
+
