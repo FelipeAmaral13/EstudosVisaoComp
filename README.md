@@ -15,6 +15,7 @@
 13. Image Reverse Search Engine
 14. Image Completion
 15. Multi-view Scene Understanding
+16. Tesseract
 
 # Data Image 
 
