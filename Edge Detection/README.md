@@ -19,9 +19,9 @@ O Canny possui três parâmetros ajustáveis:
 
 Os critérios gerais para detecção de borda incluem:
 
-    * Detecção de arestas com baixa taxa de erros, o que significa que a detecção deve capturar com precisão o maior número possível de arestas mostradas na imagem
-    * O ponto da borda detectado pelo operador deve localizar com precisão no centro da borda.
-    * Uma determinada borda da imagem deve ser marcada apenas uma vez e, sempre que possível, o ruído da imagem não deve criar bordas falsas.
+* Detecção de arestas com baixa taxa de erros, o que significa que a detecção deve capturar com precisão o maior número possível de arestas mostradas na imagem
+* O ponto da borda detectado pelo operador deve localizar com precisão no centro da borda.
+* Uma determinada borda da imagem deve ser marcada apenas uma vez e, sempre que possível, o ruído da imagem não deve criar bordas falsas.
     
 Fonte: https://medium.com/@ssatyajitmaitra/what-canny-edge-detection-algorithm-is-all-about-103d94553d21
 
