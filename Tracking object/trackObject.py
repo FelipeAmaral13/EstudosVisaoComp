@@ -27,7 +27,7 @@ while (True):
     (x, y, w, h) = cv2.boundingRect(c)
     cv2.rectangle(frame, (x, y), (x + w, y + h), (255, 255, 0), 2)
   
-  cv2.imshow("contours", frame)
+  #cv2.imshow("contours", frame)
   cv2.imshow("dif", diff)
   if cv2.waitKey(1) == 27:
       break

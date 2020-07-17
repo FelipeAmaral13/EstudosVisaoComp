@@ -16,10 +16,10 @@ while True:
           (x,y,w,h) = cv2.boundingRect(c)
           cv2.rectangle(frame, (x,y), (x+w, y+h), (255, 255, 0), 2)
 
-  cv2.imshow("mog", fgmask)
+  #cv2.imshow("mog", fgmask)
   cv2.imshow("thresh", th)
   cv2.imshow("diff", frame & cv2.cvtColor(fgmask, cv2.COLOR_GRAY2BGR))
-  cv2.imshow("detection", frame)
+  #cv2.imshow("detection", frame)
   k = cv2.waitKey(30) & 0xff
   if k == 27:
       break
