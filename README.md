@@ -7,7 +7,7 @@
 5.  People Counting
 6.  Image Segmentation
 7.  Image Classification
-8.  Image Colorization
+8.  Color Segmetation
 9.  Object Tracking
 10. Vehicle Counting
 11. Barcode and QR Code Scanner
