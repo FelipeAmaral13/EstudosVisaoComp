@@ -1,4 +1,3 @@
-# import the necessary packages
 from imutils import face_utils
 import dlib
 import cv2
