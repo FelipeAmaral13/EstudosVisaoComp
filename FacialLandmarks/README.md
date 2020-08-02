@@ -2,9 +2,9 @@
 
 ### Requirements
 
-imutils 0.5.3
-OpenCV 4.3.0
-dlib 19.20.0
+* imutils 0.5.3
+* OpenCV 4.3.0
+* dlib 19.20.0
 
 
 
