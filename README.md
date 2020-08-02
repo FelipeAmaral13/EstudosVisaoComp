@@ -1,11 +1,11 @@
 # Project Ideas
 
-1.  Colour Detection and Tracking :heavy_check_mark:
+1.  Color Detection and Tracking :heavy_check_mark:
 2.  Edge Detection :heavy_check_mark:
 3.  Face Detection :heavy_check_mark:
 4.  Hand gesture Recognition :heavy_check_mark:
 5.  People Counting :heavy_check_mark:
-6.  Image Segmentation 
+6.  Image Segmentation :heavy_check_mark:
 7.  Image Classification
 8.  Color Segmetation
 9.  Object Tracking :heavy_check_mark:
