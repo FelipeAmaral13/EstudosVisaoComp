@@ -1,22 +1,22 @@
 # Project Ideas
 
-1.  Colour Detection and Tracking
-2.  Edge Detection
-3.  Face Detection
-4.  Hand gesture Recognition
-5.  People Counting
-6.  Image Segmentation
+1.  Color Detection and Tracking :heavy_check_mark:
+2.  Edge Detection :heavy_check_mark:
+3.  Face Detection :heavy_check_mark:
+4.  Hand gesture Recognition :heavy_check_mark:
+5.  People Counting :heavy_check_mark:
+6.  Image Segmentation :heavy_check_mark:
 7.  Image Classification
 8.  Color Segmetation
-9.  Object Tracking
-10. Vehicle Counting
-11. Barcode and QR Code Scanner
-12. Image Stitching
+9.  Object Tracking :heavy_check_mark:
+10. Vehicle Counting :heavy_check_mark:
+11. Barcode and QR Code Scanner :heavy_check_mark:
+12. Image Stitching :heavy_check_mark:
 13. Image Reverse Search Engine
 14. Image Completion
 15. Multi-view Scene Understanding
-16. Tesseract
-17. Face Landmarks
+16. Tesseract :heavy_check_mark:
+17. Face Landmarks :heavy_check_mark:
 
 # Data Image 
 
