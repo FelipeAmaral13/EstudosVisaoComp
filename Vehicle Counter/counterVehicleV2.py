@@ -1,20 +1,10 @@
-#-----------------------------------------#
-#                                         #
-#             Bibliotecas                 #
-#                                         #
-#-----------------------------------------#
+#Bibliotecas
 import numpy as np
 import cv2
 from time import sleep
 import os
 
-
-#-----------------------------------------#
-#                                         #
-#               VARIAVEIS                 #
-#                                         #
-#-----------------------------------------#
-
+#Variaveis
 veiculos = 0
 detects = []
 total = 0
@@ -27,12 +17,6 @@ offset = 40 #pixel pra cima de pra baixo pra contagem
 xy1 = (80, posL)
 xy2 = (1090, posL)
 
-
-#-----------------------------------------#
-#                                         #
-#                FUNCÕES                  #
-#                                         #
-#-----------------------------------------#
 #Funcao calcular o centro
 def centro(x,y,w,h):
     x1 = int(w/2)
