@@ -6,7 +6,7 @@
 4.  Hand gesture Recognition :heavy_check_mark:
 5.  People Counting :heavy_check_mark:
 6.  Image Segmentation :heavy_check_mark:
-7.  Color Segmetation
+7.  Color Segmetation :heavy_check_mark:
 8.  Object Tracking :heavy_check_mark:
 9. Vehicle Counting :heavy_check_mark:
 10. Barcode and QR Code Scanner :heavy_check_mark:
