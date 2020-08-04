@@ -1,6 +1,6 @@
 # Object Detection Track
 
-O objetivo desse programa é a detecção de uma cor e o rastreio do mesmo através de uma webcam. Para a detecção é necessário transformar o frama da câmera em padrão HSV,
+O objetivo desse programa é a detecção de uma cor e o rastreio do mesmo através de uma webcam. Para a detecção é necessário transformar o frema da câmera em padrão HSV,
 ajustar os limites superiores e inferiores para o reconhecimento da cor desejada, aplicar uma detecção de contornos na cor desejada do objeto que será rastreado.
 
 #### Exemplo de aplicação
