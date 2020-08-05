@@ -6,17 +6,13 @@
 4.  Hand gesture Recognition :heavy_check_mark:
 5.  People Counting :heavy_check_mark:
 6.  Image Segmentation :heavy_check_mark:
-7.  Image Classification
-8.  Color Segmetation
-9.  Object Tracking :heavy_check_mark:
-10. Vehicle Counting :heavy_check_mark:
-11. Barcode and QR Code Scanner :heavy_check_mark:
-12. Image Stitching :heavy_check_mark:
-13. Image Reverse Search Engine
-14. Image Completion
-15. Multi-view Scene Understanding
-16. Tesseract :heavy_check_mark:
-17. Face Landmarks :heavy_check_mark:
+7.  Color Segmetation :heavy_check_mark:
+8.  Object Tracking :heavy_check_mark:
+9. Vehicle Counting :heavy_check_mark:
+10. Barcode and QR Code Scanner :heavy_check_mark:
+11. Image Stitching :heavy_check_mark:
+12. Tesseract :heavy_check_mark:
+13. Face Landmarks :heavy_check_mark:
 
 # Data Image 
 
