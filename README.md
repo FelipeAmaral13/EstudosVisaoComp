@@ -14,6 +14,11 @@
 12. Tesseract :heavy_check_mark:
 13. Face Landmarks :heavy_check_mark:
 
+# Extra Projects
+
+1. Ovelhas
+2. Desafio-Mvisia
+
 # Data Image 
 
 1. [CIFAR-10](https://www.cs.toronto.edu/~kriz/cifar.html)
