@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import os
 import numpy as np
 
-cap = cv2.VideoCapture(os.path.join(os.getcwd(),'Video.mp4'))
+cap = cv2.VideoCapture(os.path.join(os.getcwd(),'2.mp4'))
 
 width = 640
 height = 480
@@ -13,6 +13,7 @@ cap.set(4, height)
 
 while True:
     ret, frame = cap.read()
+    frame = cv2.resize(frame, None, fx=.6, fy = .6)
 
     hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
 
@@ -35,7 +36,7 @@ while True:
     for cout in couts:
         area = cv2.contourArea(cout)
 
-        if (area > 100  and len(couts) > 0):
+        if (area > 100  and area < 200):
             x,y,w,h = cv2.boundingRect(cout)
             frame = cv2.rectangle(frame, (x,y),(x+w,y+h),(0,0,255),2)
             cv2.putText(frame, "Ovelha", (x+5, y+15), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 255),2)
@@ -46,6 +47,7 @@ while True:
             print("Centroid da maior area: ({}, {})".format(cx, cy))
     
     cv2.imshow('Window', frame)
+    cv2.imshow('dilated_mask', dilated_mask)
 
     if cv2.waitKey(30) & 0xFF == ord("q"):
         break
