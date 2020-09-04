@@ -30,10 +30,10 @@ def centro(x,y,w,h):
 def show_veiculo(frame, closing):
     text = f'Veiculos: {veiculos}'
     cv2.putText(frame, text + str(total), (50, 70), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 2)
-    cv2.imshow("frame", frame)
+    #cv2.imshow("frame", frame)
     #cv2.imshow('opening', opening)
     #cv2.imshow('closing', closing)
-    #cv2.imshow('fgmask', fgmask)
+    cv2.imshow('fgmask', fgmask)
     #cv2.imshow('closing', closing)
 
 
@@ -41,7 +41,8 @@ def show_veiculo(frame, closing):
 #cap = cv2.VideoCapture(0)
 cap = cv2.VideoCapture(os.path.join(os.getcwd(),'video.mp4'))
 
-fgbg = cv2.createBackgroundSubtractorMOG2(varThreshold=200 ,detectShadows=True)
+#fgbg = cv2.createBackgroundSubtractorMOG2(varThreshold=200 ,detectShadows=True)
+fgbg = cv2.createBackgroundSubtractorKNN(history=100, dist2Threshold=100, detectShadows=False)
 
 
 while True:
