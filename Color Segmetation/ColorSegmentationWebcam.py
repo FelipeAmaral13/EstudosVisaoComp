@@ -10,13 +10,13 @@ while True:
 
     # Verm
     red_low = np.array([160, 155, 85])
-    red_high = np.array([180, 255, 255])
+    red_high = np.array([255, 255, 255])
     red_mask = cv2.inRange(frame, red_low, red_high)
     red = cv2.bitwise_and(frame, frame, mask=red_mask)
 
     #Blue Filter
     low = np.array([94, 80 ,2])
-    high = np.array([126, 255, 255])
+    high = np.array([255, 255, 255])
     mask = cv2.inRange(hsv_frame, low, high)
     blue_frame = cv2.bitwise_and(frame, frame, mask=mask)    
 

@@ -1,6 +1,10 @@
 import numpy as np
 import cv2
 
+cor = np.uint8([[[0,255,0]]])
+hsv_cor  = cv2.cvtColor(cor, cv2.COLOR_BGR2HSV)
+print(hsv_cor)
+
 cap = cv2.VideoCapture(0)
 
 while True:
@@ -8,7 +12,7 @@ while True:
     hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
 
     #Limites superior e inferior
-    lim_inf = np.array([100,150,0])
+    lim_inf = np.array([100,100,100])
     lim_sup = np.array([140,255,255])
 
     #Aplicacao dos lim
