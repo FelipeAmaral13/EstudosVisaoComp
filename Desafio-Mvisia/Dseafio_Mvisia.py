@@ -3,7 +3,7 @@ import numpy as np
 import os
 
 
-face_cascade = cv2.CascadeClassifier(os.path.join(os.getcwd(), "cascades\\haarcascade_frontalface_default.xml"))
+face_cascade = cv2.CascadeClassifier(os.path.join(os.getcwd(), "haarcascade_frontalface_default.xml"))
 
 cap = cv2.VideoCapture(0)
 
