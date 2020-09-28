@@ -1,12 +1,12 @@
-#Bibliotecas
+# Bibliotecas
 import cv2
 import numpy as np
 
-#Imagem teste
+# Imagem teste
 image = cv2.imread('lena.png')
 image_to_show = np.copy(image)
 
-#Estados iniciais do mouse
+# Estados iniciais do mouse
 cropping = False
 x_init, y_init, top_left_pt, bottom_right_pt = 0, 0, 0, 0
 
@@ -18,8 +18,8 @@ def mouse_callback(event, x, y, flags, param):
         cropping = True
         x_init, y_init = x, y
         image_to_show = np.copy(image)
-        print(x_init)
-        print(y_init)
+        print(f'Ponto inicial em X {x_init}')
+        print(f'Ponto inicial em Y {y_init}')
 
     elif event == cv2.EVENT_MOUSEMOVE:
         if cropping == True:
@@ -30,10 +30,8 @@ def mouse_callback(event, x, y, flags, param):
     elif event == cv2.EVENT_LBUTTONUP:
         cropping = False
         top_left_pt, bottom_right_pt = x, y
-        print(top_left_pt)
-        print(bottom_right_pt)
-
-
+        print(f'Ponto superior {top_left_pt}')
+        print(f'Ponto inferior {bottom_right_pt}')
 
 
 cv2.namedWindow('image')
@@ -44,7 +42,7 @@ while True:
     cv2.imshow('image', image_to_show)
     k = cv2.waitKey(1)
 
-    if k == ord('r'):
+    if k == ord('c'):
         if y_init > bottom_right_pt:
             y_init, bottom_right_pt = bottom_right_pt, y_init
         if x_init > top_left_pt:
@@ -60,5 +58,5 @@ while True:
 
     if cv2.waitKey(1) == ord('q'):
         break
- 
+
 cv2.destroyAllWindows()
