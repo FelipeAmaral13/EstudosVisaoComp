@@ -61,5 +61,6 @@ if __name__ == "__main__":
     cv2.imshow('detected circles', img_real_coin)
     cv2.waitKey(0)
 
+    # Save the image in Folder
     print(f'Your image will be saved on the folder {path}\\image_result')
     cv2.imwrite(path + '\\image_result\\real_result.jpg', img_real_coin)
