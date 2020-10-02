@@ -17,7 +17,11 @@ else:
 # Capturing local path
 path = os.getcwd()
 
-if __name__ == "__main__":
+
+def count_dolar():
+    '''
+    Function to detect, highlight and count the number of currencies.
+    '''
 
     # Read image
     img_dolar_coin = cv2.imread('dolar_original.png')
@@ -100,3 +104,9 @@ if __name__ == "__main__":
     # Save the image in Folder
     print(f'Your image will be saved on the folder {path}\\image_result')
     cv2.imwrite(path + '\\image_result\\dolar_result.png.jpg', img_dolar_coin)
+
+
+
+if __name__ == "__main__":
+
+    count_dolar()
