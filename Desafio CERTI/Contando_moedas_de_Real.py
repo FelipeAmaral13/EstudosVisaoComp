@@ -17,8 +17,16 @@ else:
 # Capturing local path
 path = os.getcwd()
 
-if __name__ == "__main__":
 
+def count_real():
+
+    '''
+    This function has the objective of detecting, pointing out and accounting the amount of coins.
+
+    Returns:
+        Coins detected.
+    '''
+        
     # Read the original image
     img_real_coin = cv2.imread('real_original.jpg')
 
@@ -64,3 +72,9 @@ if __name__ == "__main__":
     # Save the image in Folder
     print(f'Your image will be saved on the folder {path}\\image_result')
     cv2.imwrite(path + '\\image_result\\real_result.jpg', img_real_coin)
+
+
+
+if __name__ == "__main__":
+
+    count_real()

@@ -19,10 +19,15 @@ path = os.getcwd()
 
 
 def count_dolar():
+
     '''
-    Function to detect, highlight and count the number of currencies.
+    This function has the objective of detecting, pointing out and accounting the amount of coins.
+
+    Returns:
+        Coins detected.
     '''
 
+    
     # Read image
     img_dolar_coin = cv2.imread('dolar_original.png')
 
