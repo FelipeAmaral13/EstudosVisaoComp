@@ -13,11 +13,15 @@
 11. Image Stitching :heavy_check_mark:
 12. Tesseract :heavy_check_mark:
 13. Face Landmarks :heavy_check_mark:
+14. Face Blurred :heavy_check_mark:
+
 
 # Extra Projects
 
 1. Ovelhas
 2. Desafio-Mvisia
+3. Desafio CERTI
+
 
 # Data Image 
 

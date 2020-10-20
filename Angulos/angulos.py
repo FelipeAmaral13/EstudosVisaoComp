@@ -10,6 +10,9 @@ img_copy = copy.copy(img)
 pointsList = []
  
 def mousePoints(event,x,y,flags,params):
+    '''
+    Função para captação dos clicks do mouse.
+    '''
     if event == cv2.EVENT_LBUTTONDOWN:
         size = len(pointsList)
         print(size)
@@ -19,7 +22,7 @@ def mousePoints(event,x,y,flags,params):
         pointsList.append([x,y])
 
 
-def gradient(pt1, pt2): # Slope das retas
+def slope(pt1, pt2): # Slope das retas
     '''
     Função para pegar o slope, ou também conhecido como gradiente, das retas
     '''
@@ -30,15 +33,21 @@ def getAngle(pointsList):
     '''
     Função para pegar o angulo a partir de três pontos
     '''
-
     pt1, pt2, pt3 = pointsList[-3:]
-    m1 = gradient(pt1, pt2)
-    m2 = gradient(pt1, pt3)
+    m1 = slope(pt1, pt2)
+    m2 = slope(pt1, pt3)
     angR = math.atan((m2-m1)/(1 + (m2*m1))) # Angulos em Radianos
-    angD = round(math.degrees(angR)) # Angulos em Graus
-    #print(angD)
+    angD = round(math.degrees(angR)) # Angulos em Grau
+    if angD < 0:
+        angD = angD + 360
+    else:
+        angD
+    
     cv2.putText(img,str(angD),(pt1[0],pt1[1]),cv2.FONT_HERSHEY_COMPLEX,
                 1.5,(0,0,255),2)
+
+
+
 
 while True: 
     
@@ -49,12 +58,15 @@ while True:
     cv2.imshow('Image',img)
     cv2.setMouseCallback('Image',mousePoints)
 
+
+    # Reset da imagem. Apagar todos os textos inseridos na imagem
     if cv2.waitKey(1) == ord('n'):
-        img = cv2.imread(path)       
+        img = cv2.imread(path)
+        pointsList = []      
         cv2.imshow('Image', img)
 
 
-
+    # Apertar 'ESC' para sair
     if cv2.waitKey(1) == 27:
         pointsList = []
         img = cv2.imread(path)
