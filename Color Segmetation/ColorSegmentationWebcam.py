@@ -14,12 +14,11 @@ while True:
     red_mask = cv2.inRange(frame, red_low, red_high)
     red = cv2.bitwise_and(frame, frame, mask=red_mask)
 
-    #Blue Filter
-    low = np.array([94, 80 ,2])
+    # Blue Filter
+    low = np.array([94, 80, 2])
     high = np.array([255, 255, 255])
     mask = cv2.inRange(hsv_frame, low, high)
-    blue_frame = cv2.bitwise_and(frame, frame, mask=mask)    
-
+    blue_frame = cv2.bitwise_and(frame, frame, mask=mask)
 
     # Todas as cores exceto Branco
     #low = np.array([0, 40, 0])
@@ -27,13 +26,10 @@ while True:
     #mask = cv2.inRange(frame, low, high)
     #result = cv2.bitwise_and(frame, frame, mask=mask)
 
-
     #cv2.imshow("Frame", frame)
     #cv2.imshow("Frame", result)
     #cv2.imshow("RED", red)
     cv2.imshow('Blue_HSV', blue_frame)
-
-
 
     key = cv2.waitKey(1)
 
