@@ -4,7 +4,7 @@ import numpy as np
 import copy
 
  
-path = '1.png'
+path = '2.png'
 img = cv2.imread(path)
 img_copy = copy.copy(img)
 pointsList = []
@@ -43,7 +43,7 @@ def getAngle(pointsList):
     else:
         angD
     
-    cv2.putText(img,str(angD),(pt1[0],pt1[1]),cv2.FONT_HERSHEY_COMPLEX,
+    cv2.putText(img,str(angD),(pt1[0],pt1[1] + 10),cv2.FONT_HERSHEY_COMPLEX,
                 1.5,(0,0,255),2)
 
 
