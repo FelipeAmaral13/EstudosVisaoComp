@@ -18,10 +18,10 @@
 
 # Extra Projects
 
-1. Ovelhas
-2. Desafio-Mvisia
-3. Desafio CERTI
-4. API WebCam HSV Segmentation Object
+1. Desafio-Mvisia
+2. Desafio CERTI
+3. API WebCam HSV Segmentation Object
+4. Cartoon Efects
 
 
 # Data Image 
