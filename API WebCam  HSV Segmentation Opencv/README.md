@@ -4,10 +4,10 @@ Projeto para criação de uma simples API para fazer a segmentação de objetos 
 
 ### Requirements
 
-Flask==1.1.2
-numpy==1.18.5
-opencv-contrib-python==4.4.0.42
-opencv-python==4.4.0.42
+* Flask==1.1.2
+* numpy==1.18.5
+* opencv-contrib-python==4.4.0.42
+* opencv-python==4.4.0.42
 
 ### Funcionamento
 
