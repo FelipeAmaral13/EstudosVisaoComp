@@ -9,3 +9,4 @@ Nesse projetos é possivel fazer as seguintes minupulaçoes na imagem:
 4. Warp Affine na imagem
 
 ### Exemplo de imagem modificada
+![augmented_image_4](https://user-images.githubusercontent.com/5797933/98312472-8f12a100-1fb0-11eb-9d29-3d82a353bffa.jpg)
