@@ -91,6 +91,17 @@ def brightness(image):
 
     return brightincrease
 
+def blur_img(image):
+    '''
+        Função responsável por aplicar um filtro mediana na imagem.
+        Entrada: Imagem 
+        Saída: Imagem com filtro mediana    '''
+
+    k_size = random.randrange(1,10,2)
+    img_blur = cv2.medianBlur(image, k_size)
+    return img_blur
+
+
 
 # Dicionario para ativacao das funcoes
 transformations = {'Rotacao anti-horaria': rotacao_anti,
@@ -99,15 +110,18 @@ transformations = {'Rotacao anti-horaria': rotacao_anti,
                    'Vertical flip': v_flip,
                    'warp shift': warp_shift,
                    'Ruidos': ruidos_img,
-                   'Brilho': brightness
+                   'Brilho': brightness,
+                   'Blur Image': blur_img
                    }
+
+
 
 while i <= images_to_generate:
     image = random.choice(images)
     original_image = io.imread(image)
     transformed_image = []
 #     print(i)
-    n = 0       # variável para iterar até o número de transformação para aplicar
+    n = 0       # variável para iterar até o número de transformação 
     # escolha um número aleatório de transformação para aplicar na imagem
     transformation_count = random.randint(1, len(transformations))
 
