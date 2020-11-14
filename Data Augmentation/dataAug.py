@@ -27,7 +27,7 @@ def rotacao_anti(image):
     '''
         Função responsável por fazer a rotação anti-horaria da imagem.
         Entrada: Imagem 
-        Saída: Imagem rotacionada entre 0 a 180° no sentindo anti-horario
+        Saída: Imagem rotacionada entre 0 a 180° no 
     '''
     angle = random.randint(0, 180)
     return rotate(image, angle)
@@ -101,6 +101,22 @@ def blur_img(image):
     img_blur = cv2.medianBlur(image, k_size)
     return img_blur
 
+def zoom(image):
+    '''
+    Função responsável por aplicar zoom na imagem.
+    Entrada: Imagem
+    Saída: Imagem com zoom
+    '''
+    zoom_value = random.random()
+    hidth, width = image.shape[:2]
+    h_taken = int(zoom_value*hidth)
+    w_taken = int(zoom_value*width)
+    h_start = random.randint(0, hidth-h_taken)
+    w_start = random.randint(0, width-w_taken)
+    image = image[h_start:h_start+h_taken, w_start:w_start+w_taken, :]
+    image = cv2.resize(image, (hidth, width), cv2.INTER_CUBIC)
+    return image
+
 
 
 # Dicionario para ativacao das funcoes
@@ -111,7 +127,8 @@ transformations = {'Rotacao anti-horaria': rotacao_anti,
                    'warp shift': warp_shift,
                    'Ruidos': ruidos_img,
                    'Brilho': brightness,
-                   'Blur Image': blur_img
+                   'Blur Image': blur_img,
+                   'Zoom': zoom
                    }
 
 
