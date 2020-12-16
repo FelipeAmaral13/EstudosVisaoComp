@@ -38,11 +38,7 @@ def find_and_blur(gray, frame):
     return frame
 
 # Captura os frames
-<<<<<<< HEAD
 cap = cv2.VideoCapture(0)
-=======
-cap = cv2.VideoCapture('2.mp4')
->>>>>>> 13d56145fea8709e34ed8ff6ad2ba4121554d4bc
 
 while True:
 
