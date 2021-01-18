@@ -37,8 +37,8 @@ main_image = cv2.imread(path + f'\\templates\\{captcha_random}')
 hsv = cv2.cvtColor(main_image, cv2.COLOR_BGR2HSV)
 
 # Limites superior e inferior
-lim_inf = np.array([14, 0, 0])
-lim_sup = np.array([101, 255, 255])
+lim_inf = np.array([15, 0, 0])
+lim_sup = np.array([103, 255, 255])
 
 color_mask = cv2.inRange(hsv, lim_inf, lim_sup)
 
@@ -157,3 +157,6 @@ letras_captchas_total = letras_captchas_total.str.replace('C-Dilha', 'Ç')
 letras_captchas_total = letras_captchas_total.tolist()
 print(captcha_random)
 print(letras_captchas_total)
+plt.imshow(img_erode)
+plt.show()
+
