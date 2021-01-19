@@ -30,7 +30,6 @@ for f in filelist_captcha_cut:
 # PEGAR O CAPTCHA
 captcha_random = random.choice(filelist_captcha)
 main_image = cv2.imread(path + f'\\templates\\{captcha_random}')
-#gray_image = cv2.cvtColor(main_image, cv2.COLOR_BGR2GRAY)
 
 
 # Imagem no espaco HSV
@@ -143,8 +142,6 @@ for i in range(len(list_mat)):
 
     campeoes.append(campea[0])
 
-
-
 # Vetor dos captchas solucao
 letras_captchas = []
 for j in range(len(campeoes)):
@@ -155,8 +152,8 @@ letras_captchas_total = pd.Series(letras_captchas)
 letras_captchas_total = letras_captchas_total.str.replace('C-Dilha', 'Ç')
 
 letras_captchas_total = letras_captchas_total.tolist()
-print(captcha_random)
 print(letras_captchas_total)
-plt.imshow(img_erode)
+print(captcha_random)
+plt.imshow(img_th, cmap='gray')
 plt.show()
 
