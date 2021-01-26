@@ -75,7 +75,7 @@ filelist_captcha_cut = [f for f in os.listdir(path_repositorio_captcha_cut) if f
 
 
 # Lendo todos os png existentes na pasta Repositorio dos templates
-path_repositorio = path + '\\template_th'
+path_repositorio = path + '\\template_th_bk'
 filelist = [f for f in os.listdir(path_repositorio) if f.endswith(".png")]
 
 vetor_letras = []
@@ -89,7 +89,7 @@ for j in range(len(filelist_captcha_cut)):
     for i in range(len(filelist)):
 
         # Ler a imagem template
-        template = cv2.imread(path + f'\\template_th\\{filelist[i]}')
+        template = cv2.imread(path + f'\\template_th_bk\\{filelist[i]}')
 
         #print(f'Primeiro Print do arquivo {filelist[i]}')
         #template = cv2.cvtColor(template, cv2.COLOR_BGR2GRAY)
