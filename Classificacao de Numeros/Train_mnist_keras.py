@@ -6,6 +6,8 @@ from tensorflow import keras
 from tensorflow.keras import layers
 from keras.models import Sequential
 from keras.layers import Dense, Dropout, Flatten, Conv2D, MaxPooling2D
+from keras.utils.vis_utils import plot_model
+
 from matplotlib import pyplot
 import matplotlib.pyplot as plt
 from matplotlib import pyplot as plt
@@ -57,6 +59,11 @@ model.add(Dense(num_classes, activation='softmax'))
 model.compile(loss='sparse_categorical_crossentropy',
       optimizer='adam',
       metrics=['accuracy'])
+
+model.summary()
+
+plot_model(model, to_file='model_plot.png', show_shapes=True, show_layer_names=True)
+plt.show()
 
 # Treinamento
 batch_size = 128
