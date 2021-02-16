@@ -28,5 +28,6 @@ for i in range(len(nomes)):
     gray /= 255
     # predict image-digito
     prediction = model.predict(gray)
+    #print(prediction.argmax())
     leitura.append(prediction.argmax())
 print(leitura)
