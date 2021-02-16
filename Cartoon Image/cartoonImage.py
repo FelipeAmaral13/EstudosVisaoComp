@@ -9,47 +9,34 @@ print(img_rgb.shape)
 
 img_rgb = cv2.resize(img_rgb, (800, 800))
 
-img_color = img_rgb
+image = img_rgb
 
-# Downsampling da imagem usando Gaussian Pyramid
-for _ in range(num_down):
-    img_color = cv2.pyrDown(img_color)
+# Finding the Edges of Image
+gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY) 
+gray = cv2.medianBlur(gray, 7) 
+edges = cv2.adaptiveThreshold(gray, 255, cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY, 9, 10)# Making a Cartoon of the image
+color = cv2.bilateralFilter(image, 12, 250, 250) 
+cartoon = cv2.bitwise_and(color, color, mask=edges)#Visualize the cartoon image 
+cv2.imshow("Cartoon", cartoon) 
+cv2.waitKey(0) # "0" is Used to close the image window
+cv2.destroyAllWindows()
 
-# Aplicacao de um filtro bilateral. O filtro bilateral irá diminuir o pallete das cores, necessario para o efeito de cartoon
-for _ in range(num_bilateral):
-    img_color = cv2.bilateralFilter(img_color, d=9, sigmaColor=9, sigmaSpace=7)
+#convert to gray scale
+grayImage = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)#apply gaussian blur
+grayImage = cv2.GaussianBlur(grayImage, (3, 3), 0)#detect edges
+edgeImage = cv2.Laplacian(grayImage, -1, ksize=5)
+edgeImage = 255 - edgeImage#threshold image
+ret, edgeImage = cv2.threshold(edgeImage, 150, 255, cv2.THRESH_BINARY)#blur images heavily using edgePreservingFilter
+edgePreservingImage = cv2.edgePreservingFilter(image, flags=2, sigma_s=50, sigma_r=0.4)#create output matrix
+output =np.zeros(grayImage.shape)#combine cartoon image and edges image
+output = cv2.bitwise_and(edgePreservingImage, edgePreservingImage, mask=edgeImage)#Visualize the cartoon image 
+cv2.imshow("Cartoon", output) 
+cv2.waitKey(0) # "0" is Used to close the image window
+cv2.destroyAllWindows()
 
-
-# Upsampling da imagem usando Gaussian Pyramid
-for _ in range(num_down):
-    img_color = cv2.pyrUp(img_color)
-
-# Conversao da imagem em tons de cinza
-img_gray = cv2.cvtColor(img_rgb, cv2.COLOR_RGB2GRAY)
-
-
-
-# Filtro mediano para realce
-img_blur = cv2.medianBlur(img_gray, 7)
-
-
-
-# Deteccao de bordas
-img_edge = cv2.adaptiveThreshold(img_blur, 255, cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY, blockSize=9, C=2)
-
-
-
-# Conversao da imagem para RGB
-img_edge = cv2.cvtColor(img_edge, cv2.COLOR_GRAY2RGB)
+cartoon_image = cv2.stylization(image, sigma_s=150, sigma_r=0.25)  
+cv2.imshow('cartoon', cartoon_image)  
+cv2.waitKey(0)  
+cv2.destroyAllWindows()
 
 
-# Combinando a imagem colorida com a imagem com bordas destacadas
-img_cartoon = cv2.bitwise_and(img_color, img_edge)
-
-cv2.imshow("Cartoon", img_cartoon)
-cv2.waitKey(0)
-
-
-stack = np.hstack([img_rgb, img_cartoon])
-cv2.imshow("Cartoon", stack)
-cv2.waitKey(0)
