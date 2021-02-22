@@ -1,25 +1,13 @@
 import cv2
 import numpy as np  
 
-num_down = 2
-num_bilateral = 7
 
-img_rgb = cv2.imread('me.jpg')
+img_rgb = cv2.imread('por_sol.png')
 print(img_rgb.shape)
 
 img_rgb = cv2.resize(img_rgb, (800, 800))
 
 image = img_rgb
-
-# Finding the Edges of Image
-gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY) 
-gray = cv2.medianBlur(gray, 7) 
-edges = cv2.adaptiveThreshold(gray, 255, cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY, 9, 10)# Making a Cartoon of the image
-color = cv2.bilateralFilter(image, 12, 250, 250) 
-cartoon = cv2.bitwise_and(color, color, mask=edges)#Visualize the cartoon image 
-cv2.imshow("Cartoon", cartoon) 
-cv2.waitKey(0) # "0" is Used to close the image window
-cv2.destroyAllWindows()
 
 #convert to gray scale
 grayImage = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)#apply gaussian blur
