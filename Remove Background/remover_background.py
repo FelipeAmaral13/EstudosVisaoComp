@@ -9,10 +9,10 @@ image_to_show = np.copy(image)
 
 # Estados iniciais do mouse
 cropping = False
-x_init, y_init, top_left_pt, bottom_right_pt = 0, 0, 0, 0
+x_init, y_init, top_left_pt, bottom_right_pt, width, height = 0, 0, 0, 0
 
 def mouse_callback(event, x, y, flags, param):
-    global image_to_show, x_init, y_init, top_left_pt, bottom_right_pt, cropping
+    global image_to_show, x_init, y_init, top_left_pt, bottom_right_pt, cropping, width, height
 
     if event == cv2.EVENT_LBUTTONDOWN:
         cropping = True
@@ -32,6 +32,13 @@ def mouse_callback(event, x, y, flags, param):
         top_left_pt, bottom_right_pt = x, y
         print(f'Ponto superior {top_left_pt}')
         print(f'Ponto inferior {bottom_right_pt}')
+
+        pontos = [x_init, y_init, top_left_pt, bottom_right_pt]
+
+        width, height = [abs((top_left_pt - x_init)), abs((bottom_right_pt - y_init))]
+
+        print(pontos)
+        print(width, height)
 
 
 cv2.namedWindow('image')
@@ -53,11 +60,9 @@ while True:
             mask = np.zeros(image.shape[:2], np.uint8)
             bgd = np.zeros((1, 65), np.float64)
             fgd = np.zeros((1, 65), np.float64)
-            rect = (8, 8, 220, 220)
+            rect = (1, 1, width, height)
 
-            cv2.grabCut(image, mask, rect,   
-                    bgd, fgd, 
-                    5, cv2.GC_INIT_WITH_RECT)
+            cv2.grabCut(image, mask, rect, bgd, fgd, 5, cv2.GC_INIT_WITH_RECT)
             mask2 = np.where((mask == 2)|(mask == 0), 0, 1).astype('uint8') 
             image = image * mask2[:, :, np.newaxis] 
             print(image)
