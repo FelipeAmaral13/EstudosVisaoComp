@@ -1,6 +1,10 @@
 from imutils import face_utils
 import dlib
 import cv2
+import imutils
+import numpy as np
+
+
  
 #Repositorio das faces
 p = "shape_predictor_68_face_landmarks.dat"
@@ -10,23 +14,36 @@ predictor = dlib.shape_predictor(p)
 cap = cv2.VideoCapture(0)
  
 while True:
-    ret, frame = cap.read()
-    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-        
-    # Detectando as faces
+    # Capturar os frames
+    ret, image = cap.read()
+
+    image = imutils.resize(image, width=500)
+    gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+
+    # Detectar a face em tons de cinza
     rects = detector(gray, 0)
-    
-    # Encontrando os keypoints.
+
+    # Loop para detectcao de faces
     for (i, rect) in enumerate(rects):
-        # Predicao e array do numpy.
+        # Determina a facial landmarks na regiao da face
+        #entao converte a para as coordenandas (x,y) as landmarks para NumpyArray
         shape = predictor(gray, rect)
-        for j in range(1,68):
-            cv2.putText(frame, str(j), (shape.part(j).x, shape.part(j).y), 
-            fontFace=cv2.FONT_HERSHEY_SCRIPT_SIMPLEX, 
-            fontScale=0.3, 
-            color=(0,0,255))
+        shape = face_utils.shape_to_np(shape)
+
+        # Converter retangulo dlib's para Opencv-bounding box
+        # [i.e., (x, y, w, h)], Desenha a face
+        (x, y, w, h) = face_utils.rect_to_bb(rect)
+        cv2.rectangle(image, (x, y), (x + w, y + h), (0, 255, 0), 2)
+
+        # Face Number
+        cv2.putText(image, "Face #{}".format(i + 1), (x - 10, y - 10),
+                    cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
+
+        # Mostrar as landmarks
+        for (x, y) in shape:
+            cv2.circle(image, (x, y), 1, (0, 0, 255), -1)
     
-    cv2.imshow("Frame", frame)
+    cv2.imshow("Frame", image)
     k = cv2.waitKey(5) & 0xFF
     if k == 27:
         break
