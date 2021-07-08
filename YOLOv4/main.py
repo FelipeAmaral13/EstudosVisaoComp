@@ -39,7 +39,11 @@ while True:
     for (classid, score, box) in zip(classes, scores, boxes):
         # Analise para scores maor que X
         if score > 0.4 :
+            for i in range(len(classid)):
+                print(f"Classe: {classid[i]}")
             # Cores por classe. Mesma classe terá mesma cor
+            x,y,w,h = box
+            print(f"X:{x}, Y:{y}, W:{w}, H:{h}")
             color = COLORS[int(classid) % len(COLORS)]
             label = f"{class_names[classid[0]]} : {np.round(score, 2)}" # Label com a maior score e a sua respectiva classificação
 
@@ -47,7 +51,7 @@ while True:
             cv2.rectangle(frame, box, color, 2)
             cv2.putText(frame, label, (box[0], box[1] - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, color, 2)
 
-    cv2.imshow("Teste", frame)
+    cv2.imshow("Captura", frame)
     if cv2.waitKey(1) == 27:
         break
 
