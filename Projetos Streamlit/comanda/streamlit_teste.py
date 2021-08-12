@@ -72,14 +72,15 @@ def main():
 					new_img = np.array(our_image.convert('RGB'))
 				
 
-					d = pytesseract.image_to_data(new_img, output_type=Output.DICT, lang='eng', config=tessdata_dir_config)
+					d = pytesseract.image_to_data(new_img, output_type=Output.DICT, lang='por', config=tessdata_dir_config)
 					n_boxes = len(d['level'])
-
 					overlay = new_img.copy()
 					for i in range(n_boxes):
 						text = d['text'][i]
+						print(text)						
 						if text == texto:
 							(x, y, w, h) = (d['left'][i], d['top'][i], d['width'][i], d['height'][i])
+							print(d['left'][i], d['top'][i], d['width'][i], d['height'][i])
 							(x1, y1, w1, h1) = (d['left'][i + 1], d['top'][i + 1], d['width'][i + 1], d['height'][i + 1])
 							#(x2, y2, w2, h2) = (d['left'][i + 2], d['top'][i + 2], d['width'][i + 2], d['height'][i + 2])
 							# cv2.rectangle(img, (x, y), (x1 + w1, y1 + h1), (0, 255, 0), 2)
