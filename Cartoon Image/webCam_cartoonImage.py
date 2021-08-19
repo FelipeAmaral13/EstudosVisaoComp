@@ -40,7 +40,7 @@ def cartoon_img(img_rgb, frame):
     return img_rgb
 
 
-cap = cv2.VideoCapture('2.mp4')
+cap = cv2.VideoCapture(0)
 
 while True:
 
@@ -51,7 +51,7 @@ while True:
     img = cartoon_img(img_rgb, frame)
     cv2.imshow("Cartoon", img)
 
-    if cv2.waitKey(0) & 0xFF == ord('q'):
+    if cv2.waitKey(1) & 0xFF == ord('q'):
         break
 
 cap.release()
