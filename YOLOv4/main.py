@@ -18,10 +18,10 @@ class_names = []
 with open("coco.names", "r") as f:
     class_names = [cname.strip() for cname in f.readlines()]
 
-cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture('1.mp4')
 
 # Carregando os pesos e as configuracoes da RNA treinada
-net = cv2.dnn.readNet("yolov4-tiny.weights", 'yolov4-tiny.cfg')
+net = cv2.dnn.readNet("yolov3_training_last_mais_recente.weights", "yolov3_testing.cfg")
 
 # Criando o modelo de detecção
 model = cv2.dnn_DetectionModel(net)
