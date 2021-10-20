@@ -8,11 +8,12 @@ import pandas as pd
 
 #Endereco das imagens
 img_names = glob(os.path.join(os.getcwd(), 'Imagens', '*.jpg'))
+font = cv2.FONT_HERSHEY_SIMPLEX
 
-for fn in img_names:
 #Ler todas as imagens na pasta e plotar
+for fn in img_names:
 
-    areas = []
+    areas = list()
 
     # Imagem de entrada
     img = cv2.imread(fn, 1)
@@ -40,15 +41,6 @@ for fn in img_names:
     parafusos = df_areas[df_areas['AREA'] > 900]
     porcas = df_areas[df_areas['AREA'] < 899]
 
-    if (len(parafusos) != 10) :
-        print(f'Falta {abs(len(parafusos) - 10)} parafusos')
-
-    if (len(porcas) != 10) :
-        print(f'Falta {abs(len(porcas) - 10)} porcas')
-
-    else:
-        print('Conjunto Aprovado')
-
     # Mapeie rótulos de componentes para valor de matiz, 0-179 é o intervalo de matiz no OpenCV
     label_hue = np.uint8(179*labels/np.max(labels))
     blank_ch = 255*np.ones_like(label_hue)
@@ -62,23 +54,29 @@ for fn in img_names:
     
     qntd_elem  = numLabels-1
 
-    
+    flag = True
 
-    # if qntd_elem != 20:
-    #     print(f'Error! Foram encontrados : {qntd_elem}')
-    #     areas = stats[3]
+    if (len(parafusos) != 10) :
+        print(f'Falta {abs(len(parafusos) - 10)} parafusos')
+        cv2.putText(img, f'Falta {abs(len(parafusos) - 10)} parafusos',(50, 50), font, 1.5,(255,255,255),2,cv2.LINE_AA)
+        flag = False        
         
-    # else:
-    #     print('Conjunto Aprovado! ')
 
-    # # plt.imshow(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
-    # # plt.axis("off")
-    # # plt.title("Orginal Image")
-    # # plt.show()
+    if (len(porcas) != 10) :
+        print(f'Falta {abs(len(porcas) - 10)} porcas')
+        cv2.putText(img, f'Falta {abs(len(porcas) - 10)} porcas',(50, 750), font, 1.5,(255,255,255),2,cv2.LINE_AA)
+        flag = False        
+        
+    if flag == True:
+        print('Conjunto Aprovado')
+        cv2.putText(img, 'Conjunto Aprovado',(200, 750), font, 1.5,(255,255,255),2,cv2.LINE_AA)       
+        
+
     
-    print(qntd_elem)
-    # plt.imshow(cv2.cvtColor(labeled_img, cv2.COLOR_BGR2RGB))
-    plt.imshow(cv2.hconcat([cv2.cvtColor(img, cv2.COLOR_BGR2RGB), cv2.cvtColor(labeled_img, cv2.COLOR_BGR2RGB)]))
+    img_concate = cv2.hconcat([cv2.cvtColor(img, cv2.COLOR_BGR2RGB), cv2.cvtColor(labeled_img, cv2.COLOR_BGR2RGB)])
+    img_text = np.zeros((img_concate.shape[0], 50), dtype=np.uint8)
+    imagem_total = cv2.hconcat([cv2.cvtColor(img_concate, cv2.COLOR_BGR2RGB), cv2.cvtColor(img_text, cv2.COLOR_BGR2RGB)])
+    plt.imshow(imagem_total)
     plt.axis('off')
     plt.title("Imagens")
     plt.show()
