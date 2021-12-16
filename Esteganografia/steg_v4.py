@@ -1,13 +1,14 @@
 import qrcode
 import numpy as np
 from PIL import Image
+from pyzbar.pyzbar import decode
 
 
 # Criar o a mensagem do qrcode
 def qr_text(texto:str)->Image.Image:
     return qrcode.make(texto)
 
-msg_secret = qr_text('Teste')
+msg_secret = qr_text('Imagem para teste')
 
 
 def encode(img_real:str, img_qrcode:qrcode.image.pil.PilImage):
@@ -40,6 +41,14 @@ def decode(img_encode:Image.Image):
     return new_img
 
 img_qr = decode(new_img)
+
+
+def get_text(imagem:Image.Image):
+
+    result = decode(imagem)
+    print(result[0][0].decode('utf-8'))
+
+get_text(img_qr)
 
 
 def bitplanes(im:Image.Image):
