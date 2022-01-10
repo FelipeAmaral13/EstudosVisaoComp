@@ -5,13 +5,14 @@ from pyzbar.pyzbar import decode
 
 
 # Criar o a mensagem do qrcode
-def qr_text(texto:str)->Image.Image:
+def qr_text(texto: str) -> Image.Image:
     return qrcode.make(texto)
+
 
 msg_secret = qr_text('Imagem para teste')
 
 
-def encode(img_real:str, img_qrcode:qrcode.image.pil.PilImage):
+def encode(img_real: str, img_qrcode: qrcode.image.pil.PilImage):
 
     img_oficial = Image.open(img_real).convert('L')
 
@@ -22,16 +23,17 @@ def encode(img_real:str, img_qrcode:qrcode.image.pil.PilImage):
     data_c = np.array(img_oficial)
     data_s = np.array(secret, dtype=np.uint8)
 
-
     # Colocar as informaçoes no bits menos signficativos
     res = data_c & ~1 | data_s
 
     new_img = Image.fromarray(res).convert("L")
     return new_img
 
+
 new_img = encode('lena.jpg', msg_secret)
 
-def decode(img_encode:Image.Image):
+
+def decode(img_encode: Image.Image):
 
     data_s = np.array(img_encode)
     # Pegar as informacoes dos bits menos significativos
@@ -40,30 +42,33 @@ def decode(img_encode:Image.Image):
 
     return new_img
 
+
 img_qr = decode(new_img)
 
 
-def get_text(imagem:Image.Image):
+def get_text(imagem: Image.Image):
 
     result = decode(imagem)
     print(result[0][0].decode('utf-8'))
 
+
 get_text(img_qr)
 
 
-def bitplanes(im:Image.Image):
+def bitplanes(im: Image.Image):
 
     data = np.array(im)
     out = []
 
-    # Crar uma img para cada  plato de k bits 
-    for k in range(7,-1,-1):
-    # Extrair o Kth bit (de 0 a 7)
+    # Crar uma img para cada  plato de k bits
+    for k in range(7, -1, -1):
+        # Extrair o Kth bit (de 0 a 7)
         res = data // 2**k & 1
         out.append(res*255)
 
     # empilhar a geracao de imagens
     b = np.hstack(out)
     return Image.fromarray(b)
+
 
 bitplanes(new_img).show()
