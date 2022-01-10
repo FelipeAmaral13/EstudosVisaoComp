@@ -1,4 +1,3 @@
-import numpy as np
 import cv2
 
 cap = cv2.VideoCapture(0)
@@ -7,10 +6,10 @@ while True:
     ret, frame = cap.read()
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
-    #Bilateral
+    # Bilateral
     edges_bil = cv2.bilateralFilter(gray, 7, 50, 50)
 
-    #Canny
+    # Canny
     edges_Canny = cv2.Canny(gray, 60, 120)
 
     cv2.imshow('Frame_Canny', edges_Canny)
@@ -20,4 +19,3 @@ while True:
 
 cv2.destroyAllWindows()
 cap.release()
-
