@@ -6,14 +6,14 @@ import os
 path = os.getcwd()
 
 # Verificando se a pasta com Haarcascades existe
-if os.path.isdir('Haarcascades') == False:
+if os.path.isdir('Haarcascades') is False:
     print('A pasta Haarcascades não se encontra.')
 else:
     print('A pasta Haarcascades existe.')
 
 # Lendo o xml
-cascade = cv2.CascadeClassifier(
-    path + '\\Haarcascades\\haarcascade_frontalface_default.xml')
+cascade = cv2.CascadeClassifier(os.path.join(
+    path, 'Haarcascades', 'haarcascade_frontalface_default.xml'))
 
 
 def find_and_blur(gray, frame):
@@ -37,6 +37,7 @@ def find_and_blur(gray, frame):
 
     return frame
 
+
 # Captura os frames
 cap = cv2.VideoCapture(0)
 
@@ -45,9 +46,9 @@ while True:
     ret, frame = cap.read()
 
     # Pre-processamento
-    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)    
+    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     blur = find_and_blur(gray, frame)
-    
+
     cv2.imshow('Video', blur)
 
     if cv2.waitKey(1) & 0xFF == ord('q'):
