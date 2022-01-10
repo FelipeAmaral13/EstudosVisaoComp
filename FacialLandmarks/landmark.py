@@ -2,17 +2,17 @@ from imutils import face_utils
 import dlib
 import cv2
 import imutils
-import numpy as np
+import os
 
 
- 
-#Repositorio das faces
-p = "shape_predictor_68_face_landmarks.dat"
+# Repositorio das faces
+p = os.path.join(os.getcwd(), "shape_predictor_68_face_landmarks.dat")
 detector = dlib.get_frontal_face_detector()
 predictor = dlib.shape_predictor(p)
 
 cap = cv2.VideoCapture(0)
- 
+
+
 while True:
     # Capturar os frames
     ret, image = cap.read()
@@ -26,7 +26,8 @@ while True:
     # Loop para detectcao de faces
     for (i, rect) in enumerate(rects):
         # Determina a facial landmarks na regiao da face
-        #entao converte a para as coordenandas (x,y) as landmarks para NumpyArray
+        # entao converte a para as coordenandas (x,y)
+        # as landmarks para NumpyArray
         shape = predictor(gray, rect)
         shape = face_utils.shape_to_np(shape)
 
@@ -42,7 +43,7 @@ while True:
         # Mostrar as landmarks
         for (x, y) in shape:
             cv2.circle(image, (x, y), 1, (0, 0, 255), -1)
-    
+
     cv2.imshow("Frame", image)
     k = cv2.waitKey(5) & 0xFF
     if k == 27:
