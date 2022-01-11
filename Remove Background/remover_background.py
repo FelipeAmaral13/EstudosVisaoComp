@@ -1,18 +1,19 @@
 #!Python3
-
+import os
 import cv2
 import numpy as np
-import matplotlib.pyplot as plt
 
-image = cv2.imread('1.png')
+image = cv2.imread(os.path.join('1.png'))
 image_to_show = np.copy(image)
 
 # Estados iniciais do mouse
 cropping = False
 x_init, y_init, top_left_pt, bottom_right_pt, width, height = 0, 0, 0, 0
 
-def mouse_callback(event, x, y, flags, param):
-    global image_to_show, x_init, y_init, top_left_pt, bottom_right_pt, cropping, width, height
+
+def mouse_callback(event: int, x: int, y: int, flags, param):
+    global image_to_show, x_init, y_init, top_left_pt
+    global bottom_right_pt, cropping, width, height
 
     if event == cv2.EVENT_LBUTTONDOWN:
         cropping = True
@@ -22,7 +23,7 @@ def mouse_callback(event, x, y, flags, param):
         print(f'Ponto inicial em Y {y_init}')
 
     elif event == cv2.EVENT_MOUSEMOVE:
-        if cropping == True:
+        if cropping is True:
             image_to_show = np.copy(image)
             cv2.rectangle(image_to_show, (x_init, y_init),
                           (x, y), (0, 255, 0), 1)
@@ -63,8 +64,8 @@ while True:
             rect = (1, 1, width, height)
 
             cv2.grabCut(image, mask, rect, bgd, fgd, 5, cv2.GC_INIT_WITH_RECT)
-            mask2 = np.where((mask == 2)|(mask == 0), 0, 1).astype('uint8') 
-            image = image * mask2[:, :, np.newaxis] 
+            mask2 = np.where((mask == 2) | (mask == 0), 0, 1).astype('uint8')
+            image = image * mask2[:, :, np.newaxis]
             print(image)
             image_to_show = np.copy(image)
 
@@ -75,6 +76,3 @@ while True:
         break
 
 cv2.destroyAllWindows()
-
-
-
