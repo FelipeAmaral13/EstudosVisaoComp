@@ -17,7 +17,7 @@ images = []
 for im in os.listdir(images_path):
     images.append(os.path.join(images_path, im))
 
-images_to_generate = 3  # qtd de imagens a serem geradas
+images_to_generate = 100  # qtd de imagens a serem geradas
 i = 1  # variavel para inteirar no images_to_generate
 
 # Funcoes para geracao de imagens
@@ -125,16 +125,17 @@ def zoom(image):
 
 
 # Dicionario para ativacao das funcoes
-transformations = {'Rotacao anti-horaria': rotacao_anti,
-                   'Rotacao horaria': rotacao_horaria,
-                   'Horizontal flip': h_flip,
-                   'Vertical flip': v_flip,
-                   'warp shift': warp_shift,
-                   'Ruidos': ruidos_img,
-                   'Brilho': brightness,
-                   'Blur Image': blur_img,
-                   'Zoom': zoom
-                   }
+transformations = {
+    'Rotacao anti-horaria': rotacao_anti,
+    'Rotacao horaria': rotacao_horaria,
+    'Horizontal flip': h_flip,
+    'Vertical flip': v_flip,
+    # 'warp shift': warp_shift,
+#    'Ruidos': ruidos_img,
+#    'Brilho': brightness,
+#    'Blur Image': blur_img,
+#    'Zoom': zoom
+    }
 
 
 while i <= images_to_generate:
