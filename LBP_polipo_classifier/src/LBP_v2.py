@@ -2,10 +2,10 @@ import os
 import numpy as np
 from glob import glob
 from sklearn.model_selection import train_test_split, GridSearchCV
-from sklearn.metrics import classification_report, confusion_matrix
+from sklearn.metrics import classification_report
 from sklearn.metrics import accuracy_score
 from sklearn.svm import SVC
-from utils.utils import get_LBP_describe, plot_validation, plot_image
+from utils.utils import get_LBP_describe, plot_validation, plot_image, plot_cm
 
 imgs = glob(os.path.join('data', 'train', '*.jpg'))
 imgs_test = glob(os.path.join('data', 'test', '*.jpg'))
@@ -56,9 +56,9 @@ print(f'Melhores Paremetros: {grid_search.best_params_}')
 predictions = grid_search.predict(x_test)
 
 # Validação
+plot_cm(y_test, predictions)
 print(accuracy_score(y_test, predictions))
 print(classification_report(y_test, predictions))
-print(confusion_matrix(y_test, predictions))
 plot_validation(model, x_train, y_train)
 
 # Teste Real
