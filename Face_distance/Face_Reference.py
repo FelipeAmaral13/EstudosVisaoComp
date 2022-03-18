@@ -3,7 +3,7 @@ import numpy as np
 
 
 num_face_cap = 5
-capture_image=False
+capture_image = False
 font = cv2.FONT_HERSHEY_SIMPLEX
 
 cam = cv2.VideoCapture(0)
@@ -19,7 +19,7 @@ while True:
     cv2.putText(img_text, 'Aperte "s" para salvar a imagem', (50, 80), font, 1, (0,255, 255),2)
     cv2.putText(img_text, 'Aperte "q" para sair', (50, 110), font, 1, (0,255, 255),2)
 
-    if capture_image==True:
+    if capture_image == True:
         cv2.putText(frame, 'Salvo', (50, 70), font, 1, (0,255, 255),2)
         cv2.imwrite("face_cap/frame_cap.png", frame)
 
