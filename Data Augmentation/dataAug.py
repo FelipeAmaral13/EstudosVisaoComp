@@ -1,166 +1,87 @@
-# Bibliotecas
 import numpy as np
+import cv2
 from skimage import io, img_as_ubyte
 from skimage.transform import rotate, AffineTransform, warp
 from skimage.util import random_noise
 import random
 import os
-import cv2
-
-# path das imagens originais
-images_path = os.path.join(os.getcwd(), 'BD_Oficial')
-# path das imagens modificadas
-augmented_path = os.path.join(os.getcwd(), 'Aumented_Images')
-
-# Imagens Originais
-images = []
-for im in os.listdir(images_path):
-    images.append(os.path.join(images_path, im))
-
-images_to_generate = 100  # qtd de imagens a serem geradas
-i = 1  # variavel para inteirar no images_to_generate
-
-# Funcoes para geracao de imagens
 
 
-def rotacao_anti(image):
-    '''
-        Função responsável por fazer a rotação anti-horaria da imagem.
-        Entrada: Imagem
-        Saída: Imagem rotacionada entre 0 a 180° no
-    '''
-    angle = random.randint(0, 180)
-    return rotate(image, angle)
+class AugmentImage:
+
+    def __init__(self, images_path, augmented_path, images_to_generate=10):
+        self.images_path = images_path
+        self.augmented_path = augmented_path
+        self.images_to_generate = images_to_generate
+        self.transformations = {
+            'Rotacao anti-horaria': self.rotate_left,
+            'Horizontal flip': self.h_flip,
+            'Vertical flip': self.v_flip,
+            'Rotacao horaria': self.rotate_right,
+            'warp shift': self.warp_shift,
+           'Ruidos': self.ruidos_img,
+        #    'Brilho': self.brightness,
+           'Blur Image': self.blur_img,
+        }
+        self.images = [os.path.join(images_path, im) for im in os.listdir(images_path)]
+
+    def rotate_left(self, image):
+        angle = random.randint(0, 180)
+        return rotate(image, angle)
+
+    def rotate_right(self, image):
+        angle = random.randint(0, 180)
+        return rotate(image, -angle)
+
+    def h_flip(self, image):
+        return np.fliplr(image)
+
+    def v_flip(self, image):
+        return np.flipud(image)
+
+    def ruidos_img(self, image):
+        return random_noise(image)
+
+    # def brightness(self, image):
+    #     bright = np.ones(image.shape, dtype="uint8") * 70
+    #     brightincrease = cv2.add(image, bright)
+    #     return brightincrease
+    
+    def warp_shift(self, image):
+        transform = AffineTransform(translation=(0, 40))
+        warp_image = warp(image, transform, mode="wrap")
+        return warp_image
+
+    def blur_img(self, image):
+        k_size = random.randrange(1, 10, 2)
+        img_blur = cv2.medianBlur(image, k_size)
+        return img_blur
+
+    def transform_image(self, image_path):
+        image = io.imread(image_path)
+        transformed_image = image
+        transformation_count = random.randint(1, len(self.transformations))
+        n = 0
+
+        while n < transformation_count:
+            key = random.choice(list(self.transformations))
+            transformed_image = self.transformations[key](transformed_image)
+            n += 1
+
+        return transformed_image
+
+    def generate_augmented_images(self):
+        augmented_images = []
+        for i in range(1, self.images_to_generate+1):
+            image_path = random.choice(self.images)
+            transformed_image = self.transform_image(image_path)
+            new_image_path = os.path.join(self.augmented_path, f'augmented_image_{i}.jpg')
+            io.imsave(new_image_path, img_as_ubyte(transformed_image))
+            augmented_images.append(new_image_path)
+
+        return augmented_images
 
 
-def rotacao_horaria(image):
-    '''
-        Função responsável por fazer a rotação horaria da imagem.
-        Entrada: Imagem
-        Saída: Imagem rotacionada entre 0 a 180° no sentindo horario
-    '''
-    angle = random.randint(0, 180)
-    return rotate(image, -angle)
+augmenter = AugmentImage(images_path='Original', augmented_path='Augmented')
 
-
-def h_flip(image):
-    '''
-        Função responsável por fazer a inversão horizontal da imagem.
-        Entrada: Imagem
-        Saída: Imagem invertida no sentido horizontal
-    '''
-    return np.fliplr(image)
-
-
-def v_flip(image):
-    '''
-        Função responsável por fazer a inversão vertical da imagem.
-        Entrada: Imagem 
-        Saída: Imagem invertida no sentido vertical
-    '''
-    return np.flipud(image)
-
-
-def ruidos_img(image):
-    '''
-        Função responsável por inserir ruídos randomincos do tipo sal e
-        pimenta na imagem.
-        Entrada: Imagem
-        Saída: Imagem com ruidos do tipo sal e pimenta
-    '''
-    return random_noise(image)
-
-
-def warp_shift(image):
-    '''
-        Função responsável por fazer a transformacao geometrica de rotacao em
-        relacao as linhas paralelas das imagens.
-        Entrada: Imagem
-        Saída: Imagem rotacionada
-    '''
-    transform = AffineTransform(translation=(0, 40))
-    warp_image = warp(image, transform, mode="wrap")
-    return warp_image
-
-
-def brightness(image):
-    '''
-        Função responsável por incrementar brilho a imagem.
-        Entrada: Imagem
-        Saída: Imagem com brilho
-    '''
-    bright = np.ones(image.shape, dtype="uint8") * 70
-    brightincrease = cv2.add(image, bright)
-
-    return brightincrease
-
-
-def blur_img(image):
-    '''
-        Função responsável por aplicar um filtro mediana na imagem.
-        Entrada: Imagem
-        Saída: Imagem com filtro mediana
-    '''
-
-    k_size = random.randrange(1, 10, 2)
-    img_blur = cv2.medianBlur(image, k_size)
-    return img_blur
-
-
-def zoom(image):
-    '''
-    Função responsável por aplicar zoom na imagem.
-    Entrada: Imagem
-    Saída: Imagem com zoom
-    '''
-    zoom_value = random.random()
-    hidth, width = image.shape[:2]
-    h_taken = int(zoom_value*hidth)
-    w_taken = int(zoom_value*width)
-    h_start = random.randint(0, hidth-h_taken)
-    w_start = random.randint(0, width-w_taken)
-    image = image[h_start:h_start+h_taken, w_start:w_start+w_taken, :]
-    image = cv2.resize(image, (hidth, width), cv2.INTER_CUBIC)
-    return image
-
-
-# Dicionario para ativacao das funcoes
-transformations = {
-    'Rotacao anti-horaria': rotacao_anti,
-    'Rotacao horaria': rotacao_horaria,
-    'Horizontal flip': h_flip,
-    'Vertical flip': v_flip,
-    # 'warp shift': warp_shift,
-#    'Ruidos': ruidos_img,
-#    'Brilho': brightness,
-#    'Blur Image': blur_img,
-#    'Zoom': zoom
-    }
-
-
-while i <= images_to_generate:
-    image = random.choice(images)
-    original_image = io.imread(image)
-    transformed_image = []
-    # print(i)
-    n = 0  # variável para iterar até o número de transformação
-
-    # escolha um número aleatório de transformação para aplicar na imagem
-    transformation_count = random.randint(1, len(transformations))
-
-    while n <= transformation_count:
-        # Escolha aleatorio do metodo a ser aplicado
-        key = random.choice(list(transformations))
-        print(key)
-        transformed_image = transformations[key](original_image)
-        n += 1
-
-    new_image_path = "%s/augmented_image_%s.jpg" % (augmented_path, i)
-    # Converta uma imagem para o formato de byte sem sinal,
-    # com valores em [0, 255].
-    transformed_image = img_as_ubyte(transformed_image)
-    # converter a imagem antes d egravar
-    transformed_image = cv2.cvtColor(transformed_image, cv2.COLOR_BGR2RGB)
-    # Salvar a imagem ja convertida
-    cv2.imwrite(new_image_path, transformed_image)
-    i = i+1
+augmented_images = augmenter.generate_augmented_images()
