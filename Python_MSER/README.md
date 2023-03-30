@@ -1,1 +1,0 @@
-# MSER Python
