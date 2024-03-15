@@ -24,6 +24,8 @@ Requisitos
 - Assim que a transmissão de vídeo iniciar, o aplicativo detectará rostos e estimará a frequência cardíaca em batimentos por minuto (BPM).
 - Clique no botão "Parar" para interromper a captura de vídeo.
 
+![Sem título](https://github.com/FelipeAmaral13/EstudosVisaoComp/assets/5797933/065a2cc5-752e-4f09-9c2f-c561a7566fee)
+
 ## Observação
 
 Certifique-se de que sua webcam esteja corretamente conectada e acessível.
