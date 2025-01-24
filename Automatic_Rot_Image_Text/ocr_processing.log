@@ -1,0 +1,10 @@
+2025-01-24 12:11:18,082 - INFO: Iniciando processamento de 3 imagens
+2025-01-24 12:11:18,159 - WARNING: Neither CUDA nor MPS are available - defaulting to CPU. Note: This module is much faster with a GPU.
+2025-01-24 12:11:19,916 - WARNING: Neither CUDA nor MPS are available - defaulting to CPU. Note: This module is much faster with a GPU.
+2025-01-24 12:11:23,852 - WARNING: Neither CUDA nor MPS are available - defaulting to CPU. Note: This module is much faster with a GPU.
+2025-01-24 12:12:16,722 - INFO: OCR processada para document\documento_2.png: 561 textos detectados
+2025-01-24 12:12:16,798 - INFO: Rotação aplicada para document\documento_2.png. Ângulo: -16.38 graus
+2025-01-24 12:12:19,106 - INFO: OCR processada para document\documento_1.png: 538 textos detectados
+2025-01-24 12:12:20,889 - INFO: Rotação aplicada para document\documento_1.png. Ângulo: -10.82 graus
+2025-01-24 12:12:20,937 - INFO: OCR processada para document\documento_3.png: 554 textos detectados
+2025-01-24 12:12:20,984 - INFO: Rotação aplicada para document\documento_3.png. Ângulo: 9.77 graus

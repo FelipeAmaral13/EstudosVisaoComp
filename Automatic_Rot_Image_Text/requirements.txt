@@ -1,0 +1,6 @@
+easyocr
+opencv-python
+matplotlib
+numpy
+scipy
+asyncio
