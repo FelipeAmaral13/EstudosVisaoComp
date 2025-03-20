@@ -1,0 +1,14 @@
+Acurácia: 98.12%
+Precision: 0.9812
+Recall: 0.9812
+F1-Score: 0.9812
+
+Classification Report:
+              precision    recall  f1-score   support
+
+      Normal       0.98      0.98      0.98       171
+Tuberculosis       0.98      0.98      0.98       149
+
+    accuracy                           0.98       320
+   macro avg       0.98      0.98      0.98       320
+weighted avg       0.98      0.98      0.98       320
