@@ -52,6 +52,10 @@ Os mapas de calor Grad-CAM foram gerados para ajudar a entender como o modelo to
 - Regiões avermelhadas indicam as áreas mais relevantes para a classificação.
 - Para imagens de tuberculose, observa-se ativação em regiões pulmonares.
 
+  ![Image](https://github.com/user-attachments/assets/f28558f9-dbf1-470a-a97b-2ae7fc04f129)
+
+  
+
 ## Conclusão
 Este projeto demonstrou uma abordagem eficiente para detectar tuberculose em raios-X usando CNNs. Os resultados são altamente promissores, com acurácia superior a 98%. A incorporação do Grad-CAM melhorou a interpretabilidade do modelo.
 
