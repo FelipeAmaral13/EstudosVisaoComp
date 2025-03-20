@@ -31,6 +31,7 @@ pip install torch torchvision matplotlib numpy tqdm scikit-learn pillow pytorch-
 
 1. **Preparar os Dados:**
    - Coloque as imagens dentro da pasta `dados/`, separadas em subpastas `Normal/` e `Tuberculosis/`.
+   - O Dataset usado é encontrado no [kaggle](https://www.kaggle.com/datasets/tawsifurrahman/tuberculosis-tb-chest-xray-dataset)
 
 2. **Treinar o Modelo:**
    - Execute o script `main.py` para treinar o modelo.
