@@ -101,9 +101,3 @@ images/
 ## 🔒 Licença
 
 Distribuído sob a licença MIT. Livre para uso acadêmico e profissional com atribuição.
-
----
-
-## ✍️ Autor
-
-Desenvolvido por [Seu Nome] – para uso em aplicações de segmentação clássica com Pydantic e OpenCV.
