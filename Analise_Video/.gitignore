@@ -1,0 +1,18 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+# Midia de trabalho
+videoplayback.mp4
+painel.mp4
+docs/demo_linkedin.mp4
+
+# Screenshots avulsos
+Sem título*.png
